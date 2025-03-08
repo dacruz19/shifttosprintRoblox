@@ -1,0 +1,24 @@
+local  UIS = game:GetService("UserInputService")
+local tweenS = game:GetService("TweenService")
+
+local info = TweenInfo.new(.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In, 0)
+local outfo = TweenInfo.new(.5, Enum.EasingStyle.Sine, Enum.EasingDirection.In, 0)
+
+local  plr = game.Players.LocalPlayer
+local cam =  workspace.CurrentCamera
+
+UIS.InputBegan:Connect(function(input, processed)
+    if processed then return end
+    if input.KeyCode == Enum.KeyCode.LeftShift then
+        plr.Character.Humanoid.WalkSpeed = 24
+        local tween = tweenS:Create(cam, info, {FieldOfView = 85}):Play()
+    end
+end)
+
+UIS.InputEnded:Connect(function(input, processed)
+    if processed then return end
+    if input.KeyCode == Enum.KeyCode.LeftShift then
+        plr.Character.Humanoid.WalkSpeed = 16
+        local tween = tweenS:Create(cam, outfo, {FieldOfView = 70}):Play()
+    end
+end)
